@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+
+
+
+ mariadb: 
+    image: mariadb
+    container_name: my-mariadb-container
+    environment:
+      MARIADB_ROOT_PASSWORD: password
+      MARIADB_USER: user
+      MARIADB_DATABASE: my_database
+      MARIADB_PASSWORD: password
+
+
+
+
+    
+   
+ back-end:
+    build: .
+    command: mvn spring-boot:run
+    container_name: my-backend-container
+    depends_on:
+      - mariadb
+    ports:
+      - "8080:8080"
+   
