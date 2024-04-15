@@ -32,6 +32,8 @@ public class AdminController {
         Admin savedAdmin = adminService.save(admin);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedAdmin);
     }
+
+
 }
 
 

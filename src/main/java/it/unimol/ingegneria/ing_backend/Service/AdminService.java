@@ -12,16 +12,20 @@ public class AdminService {
     private AdminRepository adminRepository;
    /* @Autowired
     private PasswordEncoder passwordEncoder;
+
     */
+
     public Admin findByUsername(String username) {
         return adminRepository.findByUsername(username);
     }
 
-    /*  public Admin save(Admin admin) {
+    public Admin save(Admin admin) {
         // Codifica la password prima di salvarla nel database
         admin.setPassword(passwordEncoder.encode(admin.getPassword()));
         return adminRepository.save(admin);
 
-    } */
+    }
+
+     
 
 }

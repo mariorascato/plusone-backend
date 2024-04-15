@@ -16,7 +16,7 @@ import org.hibernate.validator.constraints.UniqueElements;
 public class Admin {
         @Id //jakarta.persistence id non spring
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long Id;
+        private Long id;
 
         @NotEmpty @NotBlank
         private String nome;
@@ -31,6 +31,40 @@ public class Admin {
 
         @NotEmpty @NotBlank
         private String ruolo;
+
+
+        // Altri campi e metodi
+
+        // Costruttore vuoto richiesto da JPA
+        public Admin() {
+        }
+
+        // Costruttore con username e password
+        public Admin(String username, String password) {
+                this.username = username;
+                this.password = password;
+        }
+
+        // Metodi getter e setter per gli attributi
+        public Long getId() {
+                return id;
+        }
+
+        public String getUsername() {
+                return username;
+        }
+
+        public void setUsername(String username) {
+                this.username = username;
+        }
+
+        public String getPassword() {
+                return password;
+        }
+
+        public void setPassword(String password) {
+                this.password = password;
+        }
 
 }
 
