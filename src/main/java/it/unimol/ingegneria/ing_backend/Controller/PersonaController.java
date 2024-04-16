@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/users")
+@CrossOrigin("http://localhost:8100")
 public class PersonaController {
 
     private PersonaService personaService;
