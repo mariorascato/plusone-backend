@@ -25,8 +25,8 @@ public class PersonaService {
     public Persona findByUsername(String username) {
         return personaRepository.findPersonaByUsername(username);
     }
-    public Persona findByPassword(String password) {
-        return  personaRepository.findPersonaByPassword( password);
+    public Persona findByEmailAndPassword(String password,String email) {
+        return  personaRepository.findPersonaByEmailAndPassword(email,password);
     }
     public List<Persona> getAll(){
         return personaRepository.findAll();

@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface PersonaRepository extends JpaRepository<Persona,Long> {
     Persona findPersonaByEmail(String email);
     Persona findPersonaByUsername(String username);
+    Persona findPersonaByEmailAndPassword(String email, String password);
     Persona findPersonaByPassword(String password);
 }

@@ -23,6 +23,10 @@ public class PersonaController {
     public Persona addPersona(@RequestBody Persona persona){
        return personaService.addPersona(persona);
     }
+    @GetMapping("getUserByEmailAndPassword/{email}/{password}")
+    public Persona getByUserByEmailAndByPassword(@PathVariable String email,@PathVariable String password) {
+        return personaService.findByEmailAndPassword(password,email);
+    }
 
     @GetMapping("getUserByUsername/{username}")
     public Persona getByUsername(@PathVariable String username) {
