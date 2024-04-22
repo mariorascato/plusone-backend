@@ -1,11 +1,10 @@
 package it.unimol.ingegneria.ing_backend.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.Data;
+import org.hibernate.validator.constraints.UniqueElements;
+import org.springframework.stereotype.Indexed;
 
 @Data
 @Entity
@@ -18,12 +17,13 @@ public class Persona {
 
         private String cognome;
 
+        @UniqueElements
         @Email
         private String email;
 
-        String username;
-
-        String password;
+        private String username;
+        @UniqueElements
+        private String password;
 
         private Ruolo ruolo;
 

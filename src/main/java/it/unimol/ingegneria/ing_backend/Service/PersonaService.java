@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -18,18 +19,28 @@ public class PersonaService {
     public Persona addPersona(Persona persona){
         return personaRepository.save(persona);
     }
-    public Persona findByEmail(String email) {
+    public Optional<Persona> findByEmail(String email) {
         return personaRepository.findPersonaByEmail(email);
     }
 
-    public Persona findByUsername(String username) {
+    public Optional<Persona> findByUsername(String username) {
         return personaRepository.findPersonaByUsername(username);
     }
-    public Persona findByEmailAndPassword(String password,String email) {
+    public Optional<Persona> findByEmailAndPassword(String password,String email) {
         return  personaRepository.findPersonaByEmailAndPassword(email,password);
     }
-    public List<Persona> getAll(){
+    public List<Persona>getAll(){
         return personaRepository.findAll();
+    }
+    public Optional<Persona> getPersonaById(Long id){
+        return personaRepository.findById(id);
+    }
+    public void deletePerson(long id){
+
+            personaRepository.deleteById(id);
+
+
+
     }
 
 
