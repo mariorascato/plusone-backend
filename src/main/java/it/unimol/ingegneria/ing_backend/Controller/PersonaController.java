@@ -1,6 +1,6 @@
+/*
 package it.unimol.ingegneria.ing_backend.Controller;
 import it.unimol.ingegneria.ing_backend.Model.Persona;
-import it.unimol.ingegneria.ing_backend.Service.PersonaService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,14 +36,6 @@ public class PersonaController {
         } else return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 
     }
-   /* @GetMapping("getUserByUsername/{username}")
-    public Persona getByUsername(@PathVariable String username) {
-        return personaService.findByUsername(username);
-
-
-    }
-
-    */
     @GetMapping("GetUserByEmail/{email}")
     public ResponseEntity<Persona> getByEmail(@PathVariable String email) {
         if(personaService.findByEmail(email).isPresent()) {
@@ -67,6 +59,8 @@ public class PersonaController {
 
 
 
+
+ */
 
 
 

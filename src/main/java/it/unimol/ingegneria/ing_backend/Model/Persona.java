@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.stereotype.Indexed;
 
 @Data
-@Entity
+@MappedSuperclass
 public class Persona {
         @Id //jakarta.persistence id non spring
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,15 +17,14 @@ public class Persona {
 
         private String cognome;
 
-        @UniqueElements
+        @Column(unique = true)
+        private String CF;
+
+        @Column(unique = true)
         @Email
         private String email;
 
-        private String username;
-        @UniqueElements
         private String password;
-
-        private Ruolo ruolo;
 
 
 }
