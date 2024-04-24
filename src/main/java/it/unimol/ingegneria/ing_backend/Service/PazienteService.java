@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -95,6 +96,21 @@ public class PazienteService {
         else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
+    }
+    public ResponseEntity<List<Paziente>> findPazientiByCitta(String citta){
+            List<Paziente> pazienti = new ArrayList<>();
+        for (Paziente paziente: pazienteRepository.findAll()) {
+            if(paziente.getIndirizzo().getCittà().equalsIgnoreCase(citta)) {
+                pazienti.add(paziente);
+            }
+        }
+        if(pazienti.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.FOUND).body(pazienti);
+        }
+
     }
 
 }

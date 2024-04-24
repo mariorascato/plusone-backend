@@ -45,4 +45,8 @@ public class PazienteController {
     public ResponseEntity<Persona> deletePaziente(@PathVariable Long id){
         return pazienteService.deletePaziente(id);
     }
+    @GetMapping("findPazientiByCitta/{citta}")
+    public ResponseEntity<List<Paziente>> findPazientiByCitta(@PathVariable String citta){
+        return pazienteService.findPazientiByCitta(citta);
+    }
 }
