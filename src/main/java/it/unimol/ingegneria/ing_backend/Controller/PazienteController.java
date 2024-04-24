@@ -1,5 +1,6 @@
 package it.unimol.ingegneria.ing_backend.Controller;
 
+import it.unimol.ingegneria.ing_backend.Model.Medico;
 import it.unimol.ingegneria.ing_backend.Model.Paziente;
 import it.unimol.ingegneria.ing_backend.Model.Persona;
 import it.unimol.ingegneria.ing_backend.Service.PazienteService;
@@ -48,5 +49,9 @@ public class PazienteController {
     @GetMapping("findPazientiByCitta/{citta}")
     public ResponseEntity<List<Paziente>> findPazientiByCitta(@PathVariable String citta){
         return pazienteService.findPazientiByCitta(citta);
+    }
+    @GetMapping("getMedicoOfPaziente/{id_paziente}")
+    public ResponseEntity<Medico> getMedicoOfPaziente(@PathVariable Long id_paziente){
+        return pazienteService.getMedicoOfPaziente(id_paziente);
     }
 }

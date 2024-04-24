@@ -1,5 +1,6 @@
 package it.unimol.ingegneria.ing_backend.Service;
 
+import it.unimol.ingegneria.ing_backend.Model.Medico;
 import it.unimol.ingegneria.ing_backend.Model.Paziente;
 import it.unimol.ingegneria.ing_backend.Model.Persona;
 import it.unimol.ingegneria.ing_backend.Repository.PazienteRepository;
@@ -111,6 +112,16 @@ public class PazienteService {
             return ResponseEntity.status(HttpStatus.FOUND).body(pazienti);
         }
 
+    }
+    public ResponseEntity<Medico> getMedicoOfPaziente(Long id_paziente){
+        Medico medico;
+        if(!pazienteRepository.findById(id_paziente).isPresent()){
+           return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        else {
+            medico = pazienteRepository.findById(id_paziente).get().getMedico();
+            return ResponseEntity.status(HttpStatus.FOUND).body(medico);
+        }
     }
 
 }

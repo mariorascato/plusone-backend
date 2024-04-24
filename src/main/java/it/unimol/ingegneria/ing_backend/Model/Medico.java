@@ -1,7 +1,9 @@
 package it.unimol.ingegneria.ing_backend.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
 
@@ -18,6 +20,7 @@ public class Medico extends Persona {
 
     private TipologiaMedico tipologiaMedico;
 
-    @OneToMany(mappedBy = "medico",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "medico",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Paziente> pazienti;
 }

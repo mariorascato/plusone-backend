@@ -1,6 +1,8 @@
 package it.unimol.ingegneria.ing_backend.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
@@ -14,7 +16,8 @@ public class Paziente extends Persona {
 
     private Boolean donatoreOrgani;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
     private Medico medico;
 
 }
