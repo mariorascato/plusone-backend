@@ -1,11 +1,10 @@
 package it.unimol.ingegneria.ing_backend.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -20,5 +19,9 @@ public class Paziente extends Persona {
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JsonIgnore
     private Medico medico;
+
+    @OneToMany(mappedBy = "paziente", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Terapia> terapie;
 
 }
