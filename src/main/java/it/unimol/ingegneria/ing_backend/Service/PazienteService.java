@@ -120,7 +120,12 @@ public class PazienteService {
         }
         else {
             medico = pazienteRepository.findById(id_paziente).get().getMedico();
-            return ResponseEntity.status(HttpStatus.FOUND).body(medico);
+
+            if(medico==null){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+
+            }
+            else return ResponseEntity.status(HttpStatus.FOUND).body(medico);
         }
     }
 

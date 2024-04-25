@@ -54,13 +54,24 @@ public class MedicoService {
         }
 
         public ResponseEntity<Medico> deleteMedico(Long id){
+
             if(!medicoRepository.findById(id).isPresent()){
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
-            else{
-                medicoRepository.deleteById(id);
-                return ResponseEntity.status(HttpStatus.OK).build();
+
+            List<Paziente> pazientiDaDissociare = medicoRepository.findById(id).get().getPazienti();
+            System.out.println(pazientiDaDissociare.toString());
+            for (Paziente paziente : pazientiDaDissociare) {
+                paziente.setMedico(null); // oppure riassegna a un altro medico
             }
+
+
+            pazienteRepository.saveAll(pazientiDaDissociare);
+
+            medicoRepository.deleteById(id);
+
+            return ResponseEntity.status(HttpStatus.OK).build();
+
         }
 
         public ResponseEntity<List<Medico>>getAll(){
