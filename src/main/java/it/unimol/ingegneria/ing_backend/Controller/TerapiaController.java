@@ -3,6 +3,7 @@ package it.unimol.ingegneria.ing_backend.Controller;
 import it.unimol.ingegneria.ing_backend.Model.Medico;
 import it.unimol.ingegneria.ing_backend.Model.Paziente;
 import it.unimol.ingegneria.ing_backend.Model.Terapia;
+import it.unimol.ingegneria.ing_backend.Model.TipologiaTerapia;
 import it.unimol.ingegneria.ing_backend.Service.TerapiaService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -33,5 +34,9 @@ public class TerapiaController {
     @GetMapping("getPazienteByTerapia/{id}")
     public ResponseEntity<Paziente> getPazienteByTerapia(@PathVariable Long id){
         return terapiaService.getPazienteByTerapia(id);
+    }
+    @GetMapping("getTerapieByTipologiaTerapia/{tipologia}")
+    public ResponseEntity<List<Terapia>> getTerapieByTipologiaTerapia(@PathVariable TipologiaTerapia tipologia){
+        return terapiaService.getTerapieByTipologia(tipologia);
     }
 }

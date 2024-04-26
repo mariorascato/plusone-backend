@@ -27,5 +27,7 @@ public class Terapia {
     @JsonIgnore
     private Paziente paziente;
 
+    private TipologiaTerapia tipologiaTerapia;
+
 
 }

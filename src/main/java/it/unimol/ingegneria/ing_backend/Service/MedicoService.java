@@ -1,7 +1,9 @@
 package it.unimol.ingegneria.ing_backend.Service;
 
+import it.unimol.ingegneria.ing_backend.Model.Infermiere;
 import it.unimol.ingegneria.ing_backend.Model.Medico;
 import it.unimol.ingegneria.ing_backend.Model.Paziente;
+import it.unimol.ingegneria.ing_backend.Model.TipologiaMedico;
 import it.unimol.ingegneria.ing_backend.Repository.MedicoRepository;
 import it.unimol.ingegneria.ing_backend.Repository.PazienteRepository;
 import lombok.AllArgsConstructor;
@@ -112,5 +114,13 @@ public class MedicoService {
                 medico = medicoRepository.findById(id_medico).get();
             }
             return ResponseEntity.status(HttpStatus.OK).body(medico.getPazienti());
+        }
+        public ResponseEntity<List<Medico>> getMedicoByTipologia(TipologiaMedico tipologiaMedico){
+            if(medicoRepository.findMedicoByTipologiaMedico(tipologiaMedico).isEmpty()){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+            else {
+                return ResponseEntity.status(HttpStatus.FOUND).body(medicoRepository.findMedicoByTipologiaMedico(tipologiaMedico).get());
+            }
         }
 }

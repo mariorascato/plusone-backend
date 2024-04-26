@@ -3,6 +3,7 @@ package it.unimol.ingegneria.ing_backend.Service;
 import it.unimol.ingegneria.ing_backend.Model.Medico;
 import it.unimol.ingegneria.ing_backend.Model.Paziente;
 import it.unimol.ingegneria.ing_backend.Model.Terapia;
+import it.unimol.ingegneria.ing_backend.Model.TipologiaTerapia;
 import it.unimol.ingegneria.ing_backend.Repository.MedicoRepository;
 import it.unimol.ingegneria.ing_backend.Repository.PazienteRepository;
 import it.unimol.ingegneria.ing_backend.Repository.TerapiaRepository;
@@ -66,5 +67,14 @@ public class TerapiaService {
         }
         else return ResponseEntity.status(HttpStatus.FOUND).body(terapiaRepository.findById(id).get().getPaziente());
     }
+    public ResponseEntity<List<Terapia>> getTerapieByTipologia(TipologiaTerapia tipologiaTerapia){
+        if(terapiaRepository.findTerapiaByTipologiaTerapia(tipologiaTerapia).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.FOUND).body(terapiaRepository.findTerapiaByTipologiaTerapia(tipologiaTerapia).get());
+        }
+    }
+
 
 }
