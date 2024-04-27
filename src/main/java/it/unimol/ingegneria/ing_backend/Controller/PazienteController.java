@@ -7,7 +7,6 @@ import it.unimol.ingegneria.ing_backend.Service.PazienteService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -18,40 +17,59 @@ import java.util.List;
 public class PazienteController {
 
     private final PazienteService pazienteService;
+
+    // Aggiungi paziente
     @PostMapping("addPaziente")
     public ResponseEntity<Paziente> addPersona(@RequestBody Paziente paziente){
         return pazienteService.addPaziente(paziente);
     }
+
+    // Aggiorna paziente
     @PutMapping("updatePaziente/{id}")
     public ResponseEntity<Paziente> updatePaziente(@RequestBody Paziente paziente,@PathVariable Long id){
         return pazienteService.updatePaziente(paziente,id);
     }
+
+    // Stampa tutti i pazienti
     @GetMapping("getAllPazienti")
     public ResponseEntity<List<Paziente>> getAll(){
         return pazienteService.getAll();
     }
+
+    // Stampa paziente da cf
     @GetMapping("getPazienteBycf/{cf}")
     public ResponseEntity<Persona> findPazienteBycf(@PathVariable String cf){
         return pazienteService.findPazienteByCF(cf);
     }
+
+    // Stampa paziente da nome e cognome
     @GetMapping("getPazientiByNomeAndCognome/{nome}/{cognome}")
     public ResponseEntity<List<Persona>> findPazientiByNomeAndCognome(@PathVariable String nome,@PathVariable String cognome){
         return pazienteService.findPazientiByNomeAndCognome(nome,cognome);
     }
+
+    // Stampa paziente da email
     @GetMapping("getPazienteByEmail/{email}")
     public ResponseEntity<Persona> findPazienteByEmail(@PathVariable String email){
         return pazienteService.findPazienteByEmail(email);
     }
-    @DeleteMapping("deletePaziente/{id}")
-    public ResponseEntity<Persona> deletePaziente(@PathVariable Long id){
-        return pazienteService.deletePaziente(id);
-    }
+
+    // Stampa paziente da citta
     @GetMapping("findPazientiByCitta/{citta}")
     public ResponseEntity<List<Paziente>> findPazientiByCitta(@PathVariable String citta){
         return pazienteService.findPazientiByCitta(citta);
     }
+
+    // Elimina paziente
+    @DeleteMapping("deletePaziente/{id}")
+    public ResponseEntity<Persona> deletePaziente(@PathVariable Long id){
+        return pazienteService.deletePaziente(id);
+    }
+
+    // Stampa il medico del paziente
     @GetMapping("getMedicoOfPaziente/{id_paziente}")
     public ResponseEntity<Medico> getMedicoOfPaziente(@PathVariable Long id_paziente){
         return pazienteService.getMedicoOfPaziente(id_paziente);
     }
+
 }
