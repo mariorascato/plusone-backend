@@ -6,12 +6,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
-
 import java.util.List;
 
 @Data
 @Entity
 public class Medico extends Persona {
+
     private String ospedale;
 
     private String reparto;
@@ -27,4 +27,5 @@ public class Medico extends Persona {
     @OneToMany(mappedBy = "medicoCurante",fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Terapia> terapie;
+
 }

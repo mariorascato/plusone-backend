@@ -9,6 +9,7 @@ import org.springframework.stereotype.Indexed;
 @Data
 @MappedSuperclass
 public class Persona {
+
         @Id //jakarta.persistence id non spring
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
@@ -25,7 +26,6 @@ public class Persona {
         private String email;
 
         private String password;
-
 
 }
 

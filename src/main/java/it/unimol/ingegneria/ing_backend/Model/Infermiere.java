@@ -12,4 +12,5 @@ public class Infermiere extends Persona{
     private String reparto;
 
     private String ruolo;
+
 }

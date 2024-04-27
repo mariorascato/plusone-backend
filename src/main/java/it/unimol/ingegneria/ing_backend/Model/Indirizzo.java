@@ -14,4 +14,5 @@ public class Indirizzo {
     private String numeroCivico;
 
     private String città;
+
 }
