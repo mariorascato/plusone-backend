@@ -2,13 +2,16 @@ package it.unimol.ingegneria.ing_backend.Repository;
 
 import it.unimol.ingegneria.ing_backend.Model.Persona;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.NoRepositoryBean;
 
-@Repository
+import java.util.List;
+import java.util.Optional;
 
-public interface PersonaRepository extends JpaRepository<Persona,Long> {
-    Persona findPersonaByEmail(String email);
-    Persona findPersonaByUsername(String username);
-    Persona findPersonaByEmailAndPassword(String email, String password);
-    Persona findPersonaByPassword(String password);
+
+@NoRepositoryBean
+public interface PersonaRepository < T extends Persona> extends JpaRepository<T ,Long> {
+    Optional<Persona> findPersonaByEmail(String email);
+
+    Optional<Persona> findPersonaByCF(String CF);
+    Optional<List<Persona>> findPersonaByNomeAndCognome(String nome, String cognome);
 }

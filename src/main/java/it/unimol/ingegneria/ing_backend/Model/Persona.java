@@ -1,19 +1,15 @@
 package it.unimol.ingegneria.ing_backend.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.UniqueElements;
+import org.springframework.stereotype.Indexed;
 
 @Data
-@Entity
+@MappedSuperclass
 public class Persona {
+
         @Id //jakarta.persistence id non spring
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
@@ -22,15 +18,14 @@ public class Persona {
 
         private String cognome;
 
+        @Column(unique = true)
+        private String CF;
+
+        @Column(unique = true)
         @Email
         private String email;
 
-        String username;
-
-        String password;
-
-        private Ruolo ruolo;
-
+        private String password;
 
 }
 
