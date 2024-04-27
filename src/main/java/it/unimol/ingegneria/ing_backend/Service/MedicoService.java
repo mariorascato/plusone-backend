@@ -1,6 +1,5 @@
 package it.unimol.ingegneria.ing_backend.Service;
 
-import it.unimol.ingegneria.ing_backend.Model.Infermiere;
 import it.unimol.ingegneria.ing_backend.Model.Medico;
 import it.unimol.ingegneria.ing_backend.Model.Paziente;
 import it.unimol.ingegneria.ing_backend.Model.TipologiaMedico;
@@ -11,9 +10,7 @@ import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-
 
 @Service
 @Data
@@ -22,6 +19,8 @@ public class MedicoService {
 
         private final MedicoRepository medicoRepository;
         private final PazienteRepository pazienteRepository;
+
+        // Aggiungi medico
         public ResponseEntity<Medico> addMedico(Medico medico){
             if(medicoRepository.findPersonaByCF(medico.getCF()).isPresent()){
 
@@ -32,6 +31,8 @@ public class MedicoService {
                 return ResponseEntity.status(HttpStatus.CREATED).body(medico);
             }
         }
+
+        // Aggiorna medico
         public ResponseEntity<Medico> updateMedico(Medico medico,Long id){
             if(!medicoRepository.findById(id).isPresent()){
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -55,6 +56,7 @@ public class MedicoService {
             }
         }
 
+        // Elimina medico
         public ResponseEntity<Medico> deleteMedico(Long id){
 
             if(!medicoRepository.findById(id).isPresent()){
@@ -76,12 +78,15 @@ public class MedicoService {
 
         }
 
+        // Stampa tutti i medici
         public ResponseEntity<List<Medico>>getAll(){
             if(medicoRepository.findAll().isEmpty()){
                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
             else return ResponseEntity.status(HttpStatus.OK).body(medicoRepository.findAll());
         }
+
+        // Relazione paziente-medico
         public ResponseEntity<Medico> addPazienteToMedico(Long id_medico,Long id_paziente){
             Medico medico;
             Paziente paziente;
@@ -105,6 +110,8 @@ public class MedicoService {
 
             return ResponseEntity.status(HttpStatus.OK).body(medico);
         }
+
+        // Stampa i pazienti seguiti dal medico
         public ResponseEntity<List<Paziente>> getAllPazientiByMedico(Long id_medico){
             Medico medico;
             if(!medicoRepository.findById(id_medico).isPresent()){
@@ -115,6 +122,8 @@ public class MedicoService {
             }
             return ResponseEntity.status(HttpStatus.OK).body(medico.getPazienti());
         }
+
+        // Stampa i medici di una Tipologia
         public ResponseEntity<List<Medico>> getMedicoByTipologia(TipologiaMedico tipologiaMedico){
             if(medicoRepository.findMedicoByTipologiaMedico(tipologiaMedico).isEmpty()){
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -123,4 +132,5 @@ public class MedicoService {
                 return ResponseEntity.status(HttpStatus.FOUND).body(medicoRepository.findMedicoByTipologiaMedico(tipologiaMedico).get());
             }
         }
+
 }
