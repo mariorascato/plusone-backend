@@ -2,6 +2,7 @@ package it.unimol.ingegneria.ing_backend.Service;
 
 import it.unimol.ingegneria.ing_backend.Model.Medico;
 import it.unimol.ingegneria.ing_backend.Model.Paziente;
+import it.unimol.ingegneria.ing_backend.Model.Persona;
 import it.unimol.ingegneria.ing_backend.Model.TipologiaMedico;
 import it.unimol.ingegneria.ing_backend.Repository.MedicoRepository;
 import it.unimol.ingegneria.ing_backend.Repository.PazienteRepository;
@@ -132,5 +133,32 @@ public class MedicoService {
                 return ResponseEntity.status(HttpStatus.FOUND).body(medicoRepository.findMedicoByTipologiaMedico(tipologiaMedico).get());
             }
         }
+    public ResponseEntity<Persona> findMedicoByCF(String cf){
+        if(!medicoRepository.findPersonaByCF(cf).isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.FOUND).body(medicoRepository.findPersonaByCF(cf).get());
+        }
+    }
+    public ResponseEntity<List<Persona>> findMediciByNomeAndCognome(String nome,String cognome){
+        if(medicoRepository.findPersonaByNomeAndCognome(nome,cognome).get().isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.FOUND).body(medicoRepository.findPersonaByNomeAndCognome(nome,cognome).get());
+        }
+    }
+    public ResponseEntity<Persona> findMedicoByEmail(String email){
+        if (!medicoRepository.findPersonaByEmail(email).isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.FOUND).body(medicoRepository.findPersonaByEmail(email).get());
+        }
+    }
+
+
+
 
 }

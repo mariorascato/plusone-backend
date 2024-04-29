@@ -1,6 +1,7 @@
 package it.unimol.ingegneria.ing_backend.Controller;
 
 import it.unimol.ingegneria.ing_backend.Model.Infermiere;
+import it.unimol.ingegneria.ing_backend.Model.Persona;
 import it.unimol.ingegneria.ing_backend.Service.InfermiereService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +39,19 @@ public class InfermiereController {
     @GetMapping("getAll")
     public ResponseEntity<List<Infermiere>> getAll(){
         return infermiereService.getAll();
+    }
+
+    @GetMapping("getInfermiereByEmail/{email}")
+    public ResponseEntity<Persona> getInfermiereByEmail(@PathVariable String email){
+        return infermiereService.findInfermiereByEmail(email);
+    }
+    @GetMapping("getInfermiereBycf/{cf}")
+    public ResponseEntity<Persona> getInfermiereBycf(@PathVariable String cf){
+        return infermiereService.findInfermiereByCF(cf);
+    }
+    @GetMapping("getInfermieriByNomeAndCognome/{nome}/{cognome}")
+    public ResponseEntity<List<Persona>> getInfermieriByNomeAndCognome(@PathVariable String nome, @PathVariable String cognome) {
+        return infermiereService.findInfermieriByNomeAndCognome(nome,cognome);
     }
 
 }
