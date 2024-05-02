@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/api/infermieri")
 @CrossOrigin("http://localhost:8100")
-
 public class InfermiereController {
 
     private final InfermiereService infermiereService;
