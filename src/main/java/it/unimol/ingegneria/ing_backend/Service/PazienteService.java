@@ -83,7 +83,7 @@ public class PazienteService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else {
-            return ResponseEntity.status(HttpStatus.FOUND).body(pazienteRepository.findPersonaByNomeAndCognome(nome,cognome).get());
+            return ResponseEntity.status(HttpStatus.OK).body(pazienteRepository.findPersonaByNomeAndCognome(nome,cognome).get());
         }
     }
 
@@ -93,7 +93,7 @@ public class PazienteService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else {
-            return ResponseEntity.status(HttpStatus.FOUND).body(pazienteRepository.findPersonaByEmail(email).get());
+            return ResponseEntity.status(HttpStatus.OK).body(pazienteRepository.findPersonaByEmail(email).get());
         }
     }
 

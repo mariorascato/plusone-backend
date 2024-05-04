@@ -16,9 +16,8 @@ public class Terapia {
 
     private Date orario;
 
-    private String informazioniAggiuntive;
 
-    private String causa;
+    private String reparto;
 
     private Boolean attivo;
 

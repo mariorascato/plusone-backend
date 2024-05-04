@@ -154,7 +154,7 @@ public class MedicoService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else {
-            return ResponseEntity.status(HttpStatus.FOUND).body(medicoRepository.findPersonaByEmail(email).get());
+            return ResponseEntity.status(HttpStatus.OK).body(medicoRepository.findPersonaByEmail(email).get());
         }
     }
 

@@ -50,7 +50,7 @@ public class TerapiaService {
 
             terapiaRepository.save(terapia);
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(terapia);
+            return ResponseEntity.status(HttpStatus.OK).body(terapia);
 
     }
 
