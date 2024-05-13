@@ -1,9 +1,6 @@
 package it.unimol.ingegneria.ing_backend.Service;
 
-import it.unimol.ingegneria.ing_backend.Model.Medico;
-import it.unimol.ingegneria.ing_backend.Model.Paziente;
-import it.unimol.ingegneria.ing_backend.Model.Persona;
-import it.unimol.ingegneria.ing_backend.Model.TipologiaMedico;
+import it.unimol.ingegneria.ing_backend.Model.*;
 import it.unimol.ingegneria.ing_backend.Repository.MedicoRepository;
 import it.unimol.ingegneria.ing_backend.Repository.PazienteRepository;
 import lombok.AllArgsConstructor;
@@ -156,6 +153,23 @@ public class MedicoService {
         else {
             return ResponseEntity.status(HttpStatus.OK).body(medicoRepository.findPersonaByEmail(email).get());
         }
+    }
+    public ResponseEntity<List<Terapia>> getAllPrenotazioniByMedico(Long id_medico){
+        if(!medicoRepository.findById(id_medico).isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        if(medicoRepository.findById(id_medico).get().getTerapie().isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(medicoRepository.findById(id_medico).get().getTerapie());
+    }
+    public ResponseEntity<List<Medico>> addMedici(List<Medico> medici){
+            if(medici.isEmpty()){
+                return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
+            }
+            medicoRepository.saveAll(medici);
+            return ResponseEntity.status(HttpStatus.OK).body(medici);
+
     }
 
 

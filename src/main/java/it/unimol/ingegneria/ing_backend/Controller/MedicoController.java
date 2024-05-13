@@ -1,9 +1,6 @@
 package it.unimol.ingegneria.ing_backend.Controller;
 
-import it.unimol.ingegneria.ing_backend.Model.Medico;
-import it.unimol.ingegneria.ing_backend.Model.Paziente;
-import it.unimol.ingegneria.ing_backend.Model.Persona;
-import it.unimol.ingegneria.ing_backend.Model.TipologiaMedico;
+import it.unimol.ingegneria.ing_backend.Model.*;
 import it.unimol.ingegneria.ing_backend.Service.MedicoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -70,6 +67,14 @@ import java.util.List;
         @GetMapping("getMedicoBycf/{cf}")
         public ResponseEntity<Persona> getMedicoBycf(@PathVariable String cf){
             return medicoService.findMedicoByCF(cf);
+        }
+        @GetMapping("getAllPrenotazioniByMedico/{id}")
+        public ResponseEntity<List<Terapia>> getAllPrenotazioniByMedico(@PathVariable Long id){
+            return medicoService.getAllPrenotazioniByMedico(id);
+        }
+        @PostMapping("addMedici")
+        public ResponseEntity<List<Medico>> addMedici(@RequestBody List<Medico> medici){
+            return medicoService.addMedici(medici);
         }
 
 }

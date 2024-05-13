@@ -24,7 +24,7 @@ public class Medico extends Persona {
     @JsonIgnore
     private List<Paziente> pazienti;
 
-    @OneToMany(mappedBy = "medicoCurante",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "medicoCurante",fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Terapia> terapie;
 
