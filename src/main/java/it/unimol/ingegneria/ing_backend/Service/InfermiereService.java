@@ -8,6 +8,8 @@ import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import java.util.List;
 
 @Service
@@ -96,6 +98,14 @@ public class InfermiereService {
             return ResponseEntity.status(HttpStatus.FOUND).body(infermiereRepository.findPersonaByCF(cf).get());
         }
     }
+    public ResponseEntity<List<Infermiere>> addInfermieri(@RequestBody List<Infermiere> infermieri){
+        if(infermieri.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(infermiereRepository.saveAll(infermieri));
+    }
+
 
 
 }

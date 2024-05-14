@@ -3,6 +3,7 @@ package it.unimol.ingegneria.ing_backend.Controller;
 import it.unimol.ingegneria.ing_backend.Model.Infermiere;
 import it.unimol.ingegneria.ing_backend.Model.Persona;
 import it.unimol.ingegneria.ing_backend.Service.InfermiereService;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +53,10 @@ public class InfermiereController {
     @GetMapping("getInfermieriByNomeAndCognome/{nome}/{cognome}")
     public ResponseEntity<List<Persona>> getInfermieriByNomeAndCognome(@PathVariable String nome, @PathVariable String cognome) {
         return infermiereService.findInfermieriByNomeAndCognome(nome,cognome);
+    }
+    @PostMapping("addInfermieri")
+    public ResponseEntity<List<Infermiere>> addInfermieri(@RequestBody List<Infermiere> infermieri){
+        return infermiereService.addInfermieri(infermieri);
     }
 
 }

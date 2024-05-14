@@ -141,5 +141,12 @@ public class PazienteService {
             else return ResponseEntity.status(HttpStatus.FOUND).body(medico);
         }
     }
+    public ResponseEntity<List<Paziente>> addPazienti(List<Paziente> pazienti){
+        if(pazienti.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
+        }
 
+        return ResponseEntity.status(HttpStatus.OK).body(pazienteRepository.saveAll(pazienti));
+
+    }
 }

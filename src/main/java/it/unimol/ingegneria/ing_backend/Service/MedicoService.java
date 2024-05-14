@@ -167,8 +167,8 @@ public class MedicoService {
             if(medici.isEmpty()){
                 return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
             }
-            medicoRepository.saveAll(medici);
-            return ResponseEntity.status(HttpStatus.OK).body(medici);
+
+            return ResponseEntity.status(HttpStatus.OK).body(medicoRepository.saveAll(medici));
 
     }
 

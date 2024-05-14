@@ -71,5 +71,9 @@ public class PazienteController {
     public ResponseEntity<Medico> getMedicoOfPaziente(@PathVariable Long id_paziente){
         return pazienteService.getMedicoOfPaziente(id_paziente);
     }
+    @PostMapping("addPazienti")
+    public ResponseEntity<List<Paziente>> addPazienti(@RequestBody List<Paziente> pazienti){
+        return pazienteService.addPazienti(pazienti);
+    }
 
 }
