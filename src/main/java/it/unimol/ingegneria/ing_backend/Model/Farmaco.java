@@ -1,10 +1,9 @@
 package it.unimol.ingegneria.ing_backend.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.Data;
+import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
 
 @Data
 @Entity
@@ -23,5 +22,15 @@ public class Farmaco {
     private String principioAttivo;
 
     private String azienda;
+
+    // Relazione con paziente
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Paziente> pazienti;
+
+    // Relazione con Terapia farmacologica
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Tfarmacologica> tfarmacologica;
 
 }

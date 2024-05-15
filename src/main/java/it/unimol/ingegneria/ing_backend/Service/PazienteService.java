@@ -1,16 +1,19 @@
 package it.unimol.ingegneria.ing_backend.Service;
 
-import it.unimol.ingegneria.ing_backend.Model.Medico;
-import it.unimol.ingegneria.ing_backend.Model.Paziente;
 import it.unimol.ingegneria.ing_backend.Model.Persona;
+
+import it.unimol.ingegneria.ing_backend.Model.Paziente;
 import it.unimol.ingegneria.ing_backend.Repository.PazienteRepository;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
+import it.unimol.ingegneria.ing_backend.Model.Medico;
+
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import java.util.List;
+import java.util.ArrayList;
 
 @Service
 @AllArgsConstructor
@@ -19,7 +22,7 @@ public class PazienteService {
 
     private final PazienteRepository pazienteRepository;
 
-    // Aggiungi paziente
+    // Aggiungi un paziente
     public ResponseEntity<Paziente> addPaziente(Paziente paziente){
         if(pazienteRepository.findPersonaByCF(paziente.getCF()).isPresent()){
 
@@ -29,6 +32,14 @@ public class PazienteService {
             pazienteRepository.save(paziente);
             return ResponseEntity.status(HttpStatus.CREATED).body(paziente);
         }
+    }
+
+    // Aggiungi più pazienti
+    public ResponseEntity<List<Paziente>> addPazienti(List<Paziente> pazienti){
+        if(pazienti.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(pazienteRepository.saveAll(pazienti));
     }
 
     // Aggiorna paziente

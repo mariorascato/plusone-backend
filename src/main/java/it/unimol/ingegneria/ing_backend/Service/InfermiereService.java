@@ -2,11 +2,13 @@ package it.unimol.ingegneria.ing_backend.Service;
 
 import it.unimol.ingegneria.ing_backend.Model.Infermiere;
 import it.unimol.ingegneria.ing_backend.Repository.InfermiereRepository;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Service;
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 @Service
@@ -16,7 +18,7 @@ public class InfermiereService {
 
     private final InfermiereRepository infermiereRepository;
 
-    // Aggiungi infermiere
+    // Aggiungi un infermiere
     public ResponseEntity<Infermiere> addInfermiere(Infermiere infermiere){
         if(infermiereRepository.findPersonaByCF(infermiere.getCF()).isPresent()){
 
@@ -26,6 +28,15 @@ public class InfermiereService {
             infermiereRepository.save(infermiere);
             return ResponseEntity.status(HttpStatus.CREATED).body(infermiere);
         }
+    }
+
+    // Aggiungi più infermieri
+    public ResponseEntity<List<Infermiere>> addInfermieri(@RequestBody List<Infermiere> infermieri){
+        if(infermieri.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(infermiereRepository.saveAll(infermieri));
     }
 
     // Aggiorna infermiere

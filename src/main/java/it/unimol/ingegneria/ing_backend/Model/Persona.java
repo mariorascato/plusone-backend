@@ -1,8 +1,8 @@
 package it.unimol.ingegneria.ing_backend.Model;
 
+import lombok.Data;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.Data;
 
 @Data
 @MappedSuperclass
