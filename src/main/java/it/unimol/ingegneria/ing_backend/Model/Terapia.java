@@ -1,13 +1,12 @@
 package it.unimol.ingegneria.ing_backend.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import jakarta.persistence.*;
 import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
 @Data
+@Entity
 public class Terapia {
 
     @Id

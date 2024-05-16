@@ -2,6 +2,7 @@ package it.unimol.ingegneria.ing_backend.Controller;
 
 import it.unimol.ingegneria.ing_backend.Model.Infermiere;
 import it.unimol.ingegneria.ing_backend.Service.InfermiereService;
+
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,15 +12,20 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/api/infermieri")
 @CrossOrigin("http://localhost:8100")
-
 public class InfermiereController {
 
     private final InfermiereService infermiereService;
 
-    // Aggiungi infermiere
+    // Aggiungi un infermiere
     @PostMapping("addInfermiere")
     public ResponseEntity<Infermiere> addPersona(@RequestBody Infermiere infermiere){
         return infermiereService.addInfermiere(infermiere);
+    }
+
+    // Aggiungi più infermieri
+    @PostMapping("addInfermieri")
+    public ResponseEntity<List<Infermiere>> addInfermieri(@RequestBody List<Infermiere> infermieri){
+        return infermiereService.addInfermieri(infermieri);
     }
 
     // Aggiorna infermiere

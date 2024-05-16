@@ -1,7 +1,7 @@
 package it.unimol.ingegneria.ing_backend.Model;
 
-import jakarta.persistence.Entity;
 import lombok.Data;
+import jakarta.persistence.Entity;
 
 @Data
 @Entity

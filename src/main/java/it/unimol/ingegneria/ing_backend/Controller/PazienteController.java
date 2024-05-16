@@ -1,9 +1,12 @@
 package it.unimol.ingegneria.ing_backend.Controller;
 
-import it.unimol.ingegneria.ing_backend.Model.Medico;
-import it.unimol.ingegneria.ing_backend.Model.Paziente;
 import it.unimol.ingegneria.ing_backend.Model.Persona;
+
+import it.unimol.ingegneria.ing_backend.Model.Paziente;
 import it.unimol.ingegneria.ing_backend.Service.PazienteService;
+
+import it.unimol.ingegneria.ing_backend.Model.Medico;
+
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,15 +16,20 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/api/pazienti")
 @CrossOrigin("http://localhost:8100")
-
 public class PazienteController {
 
     private final PazienteService pazienteService;
 
-    // Aggiungi paziente
+    // Aggiungi un paziente
     @PostMapping("addPaziente")
     public ResponseEntity<Paziente> addPersona(@RequestBody Paziente paziente){
         return pazienteService.addPaziente(paziente);
+    }
+
+    // Aggiungi più pazienti
+    @PostMapping("addPazienti")
+    public ResponseEntity<List<Paziente>> addPazienti(@RequestBody List<Paziente> pazienti){
+        return pazienteService.addPazienti(pazienti);
     }
 
     // Aggiorna paziente

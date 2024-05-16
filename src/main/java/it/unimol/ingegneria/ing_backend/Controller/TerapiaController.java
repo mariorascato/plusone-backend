@@ -1,10 +1,14 @@
 package it.unimol.ingegneria.ing_backend.Controller;
 
-import it.unimol.ingegneria.ing_backend.Model.Medico;
-import it.unimol.ingegneria.ing_backend.Model.Paziente;
 import it.unimol.ingegneria.ing_backend.Model.Terapia;
-import it.unimol.ingegneria.ing_backend.Model.TipologiaTerapia;
 import it.unimol.ingegneria.ing_backend.Service.TerapiaService;
+
+import it.unimol.ingegneria.ing_backend.Model.TipologiaTerapia;
+
+import it.unimol.ingegneria.ing_backend.Model.Medico;
+
+import it.unimol.ingegneria.ing_backend.Model.Paziente;
+
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

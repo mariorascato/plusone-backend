@@ -1,7 +1,7 @@
 package it.unimol.ingegneria.ing_backend.Model;
 
-import jakarta.persistence.Embeddable;
 import lombok.Data;
+import jakarta.persistence.Embeddable;
 
 @Data
 @Embeddable

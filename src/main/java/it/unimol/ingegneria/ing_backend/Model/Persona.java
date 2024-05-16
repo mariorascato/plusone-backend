@@ -1,10 +1,8 @@
 package it.unimol.ingegneria.ing_backend.Model;
 
+import lombok.Data;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.Data;
-import org.hibernate.validator.constraints.UniqueElements;
-import org.springframework.stereotype.Indexed;
 
 @Data
 @MappedSuperclass
