@@ -1,5 +1,6 @@
 package it.unimol.ingegneria.ing_backend.Controller;
 
+import it.unimol.ingegneria.ing_backend.Model.Conferma;
 import it.unimol.ingegneria.ing_backend.Model.Medico;
 import it.unimol.ingegneria.ing_backend.Model.Triage;
 import it.unimol.ingegneria.ing_backend.Service.TriageService;
@@ -38,6 +39,10 @@ public class TriageController {
     @DeleteMapping("deleteTriage/{id}")
     public ResponseEntity<Triage> deleteTriage(@PathVariable Long id){
         return triageService.deleteTriage(id);
+    }
+    @PutMapping("setState/{id}/{conferma}")
+    public ResponseEntity<Triage> setState(@PathVariable Long id, @PathVariable Conferma conferma){
+        return triageService.setState(id,conferma);
     }
 
 }

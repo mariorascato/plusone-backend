@@ -13,12 +13,16 @@ public class Triage {
     private Long id;
     private float latitudine;
     private float longitudine;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Colore colore;
+
     private String descrizione;
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
-    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     private Paziente paziente;
     private LocalDate data;
-    private boolean attivo;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Conferma conferma;
 
 }
