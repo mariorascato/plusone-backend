@@ -25,6 +25,10 @@ public class Paziente extends Persona {
     @JsonIgnore
     private List<Terapia> terapie;
 
+    @OneToMany(mappedBy = "paziente", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Tfarmacologica> terapieFarmacologiche;
+
     // Relazione con farmaco
     @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnore
@@ -32,6 +36,7 @@ public class Paziente extends Persona {
 
     // Relazione con triage
     @OneToMany(mappedBy = "paziente", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Triage> triages;
 
 }

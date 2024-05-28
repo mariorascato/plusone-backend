@@ -21,5 +21,12 @@ public class Tfarmacologica {
     @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Farmaco> farmaci;
+    @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Medico medico;
+
+    @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Paziente paziente;
 
 }

@@ -104,7 +104,7 @@ public class PazienteService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else {
-            return ResponseEntity.status(HttpStatus.FOUND).body(pazienteRepository.findPersonaByEmail(email).get());
+            return ResponseEntity.status(HttpStatus.OK).body(pazienteRepository.findPersonaByEmail(email).get());
         }
     }
 
