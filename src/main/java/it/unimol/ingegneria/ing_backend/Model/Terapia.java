@@ -21,10 +21,12 @@ public class Terapia {
 
     private Boolean attivo;
 
+    // Relazione con medico
     @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     @JsonIgnore
     private Medico medicoCurante;
 
+    // Relazione con paziente
     @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     @JsonIgnore
     private Paziente paziente;

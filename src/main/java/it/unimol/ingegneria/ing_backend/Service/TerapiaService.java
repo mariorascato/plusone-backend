@@ -3,10 +3,8 @@ package it.unimol.ingegneria.ing_backend.Service;
 import it.unimol.ingegneria.ing_backend.Model.Terapia;
 import it.unimol.ingegneria.ing_backend.Repository.TerapiaRepository;
 import it.unimol.ingegneria.ing_backend.Model.TipologiaTerapia;
-
 import it.unimol.ingegneria.ing_backend.Model.Medico;
 import it.unimol.ingegneria.ing_backend.Repository.MedicoRepository;
-
 import it.unimol.ingegneria.ing_backend.Model.Paziente;
 import it.unimol.ingegneria.ing_backend.Repository.PazienteRepository;
 
@@ -33,7 +31,7 @@ public class TerapiaService {
             Paziente paziente;
 
             // Controllo esistenza medico
-            if(!medicoRepository.findById(id_medico).isPresent()){
+            if(medicoRepository.findById(id_medico).isEmpty()){
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
             else {
@@ -41,7 +39,7 @@ public class TerapiaService {
             }
 
             // Controllo esistenza paziente
-            if(!pazienteRepository.findById(id_paziente).isPresent()){
+            if(pazienteRepository.findById(id_paziente).isEmpty()){
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
             else {
@@ -50,9 +48,7 @@ public class TerapiaService {
 
             terapia.setPaziente(paziente);
             terapia.setMedicoCurante(medico);
-
             terapiaRepository.save(terapia);
-
             return ResponseEntity.status(HttpStatus.CREATED).body(terapia);
 
     }
@@ -64,7 +60,7 @@ public class TerapiaService {
 
     // Stampa il medico della terapia
     public ResponseEntity<Medico> getMedicoByTerapia(Long id){
-        if(!terapiaRepository.findById(id).isPresent()){
+        if(terapiaRepository.findById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else return ResponseEntity.status(HttpStatus.FOUND).body(terapiaRepository.findById(id).get().getMedicoCurante());
@@ -72,7 +68,7 @@ public class TerapiaService {
 
     // Stampa il paziente della terapia
     public ResponseEntity<Paziente> getPazienteByTerapia(Long id){
-        if(!terapiaRepository.findById(id).isPresent()){
+        if(terapiaRepository.findById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else return ResponseEntity.status(HttpStatus.FOUND).body(terapiaRepository.findById(id).get().getPaziente());

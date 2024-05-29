@@ -26,4 +26,3 @@ public class Persona {
         private String password;
 
 }
-

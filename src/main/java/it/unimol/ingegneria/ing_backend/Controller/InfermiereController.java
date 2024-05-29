@@ -1,6 +1,7 @@
 package it.unimol.ingegneria.ing_backend.Controller;
 
 import it.unimol.ingegneria.ing_backend.Model.Infermiere;
+import it.unimol.ingegneria.ing_backend.Model.Persona;
 import it.unimol.ingegneria.ing_backend.Service.InfermiereService;
 
 import lombok.AllArgsConstructor;
@@ -40,10 +41,16 @@ public class InfermiereController {
         return infermiereService.deleteInfermiere(id);
     }
 
-    // Stampa tutti gli infermiere
+    // Stampa tutti gli infermieri
     @GetMapping("getAll")
     public ResponseEntity<List<Infermiere>> getAll(){
         return infermiereService.getAll();
+    }
+
+    // Stampa infermiere da email
+    @GetMapping("getInfermiereByEmail/{email}")
+    public ResponseEntity<Persona> getInfermiereByEmail(@PathVariable String email){
+        return infermiereService.getInfermiereByEmail(email);
     }
 
 }

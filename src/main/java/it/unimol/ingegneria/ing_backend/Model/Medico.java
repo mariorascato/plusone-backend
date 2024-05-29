@@ -20,12 +20,19 @@ public class Medico extends Persona {
 
     private TipologiaMedico tipologiaMedico;
 
+    // Relazione con pazienti
     @OneToMany(mappedBy = "medico",fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     @JsonIgnore
     private List<Paziente> pazienti;
 
+    // Relazione con terapie
     @OneToMany(mappedBy = "medicoCurante",fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Terapia> terapie;
+
+    // Relazione con terapie farmacologiche
+    @OneToMany(mappedBy = "medico", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Tfarmacologica> terapieFarmacologiche;
 
 }

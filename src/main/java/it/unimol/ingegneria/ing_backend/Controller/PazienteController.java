@@ -1,10 +1,8 @@
 package it.unimol.ingegneria.ing_backend.Controller;
 
 import it.unimol.ingegneria.ing_backend.Model.Persona;
-
 import it.unimol.ingegneria.ing_backend.Model.Paziente;
 import it.unimol.ingegneria.ing_backend.Service.PazienteService;
-
 import it.unimol.ingegneria.ing_backend.Model.Medico;
 
 import lombok.AllArgsConstructor;

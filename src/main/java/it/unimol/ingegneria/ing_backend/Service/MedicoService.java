@@ -2,9 +2,7 @@ package it.unimol.ingegneria.ing_backend.Service;
 
 import it.unimol.ingegneria.ing_backend.Model.*;
 import it.unimol.ingegneria.ing_backend.Repository.MedicoRepository;
-
 import it.unimol.ingegneria.ing_backend.Repository.PazienteRepository;
-
 import it.unimol.ingegneria.ing_backend.Repository.FarmacoRepository;
 
 import org.springframework.stereotype.Service;
@@ -45,7 +43,7 @@ public class MedicoService {
 
     // Aggiorna medico
     public ResponseEntity<Medico> updateMedico(Medico medico,Long id){
-        if(!medicoRepository.findById(id).isPresent()){
+        if(medicoRepository.findById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else{
@@ -69,7 +67,7 @@ public class MedicoService {
     // Elimina medico
     public ResponseEntity<Medico> deleteMedico(Long id){
 
-        if(!medicoRepository.findById(id).isPresent()){
+        if(medicoRepository.findById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
@@ -97,7 +95,7 @@ public class MedicoService {
 
     // Cerca medico da codice fiscale
     public ResponseEntity<Persona> findMedicoByCF(String cf){
-        if(!medicoRepository.findPersonaByCF(cf).isPresent()){
+        if(medicoRepository.findPersonaByCF(cf).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else{
@@ -117,7 +115,7 @@ public class MedicoService {
 
     // Cerca medico da email
     public ResponseEntity<Persona> findMedicoByEmail(String email){
-        if (!medicoRepository.findPersonaByEmail(email).isPresent()){
+        if (medicoRepository.findPersonaByEmail(email).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else {
@@ -129,13 +127,13 @@ public class MedicoService {
     public ResponseEntity<Medico> addPazienteToMedico(Long id_medico,Long id_paziente){
         Medico medico;
         Paziente paziente;
-        if(!medicoRepository.findById(id_medico).isPresent()){
+        if(medicoRepository.findById(id_medico).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else {
             medico = medicoRepository.findById(id_medico).get();
         }
-        if(!pazienteRepository.findById(id_paziente).isPresent()){
+        if(pazienteRepository.findById(id_paziente).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else {
@@ -149,7 +147,7 @@ public class MedicoService {
     // Stampa i pazienti seguiti dal medico
     public ResponseEntity<List<Paziente>> getAllPazientiByMedico(Long id_medico){
         Medico medico;
-        if(!medicoRepository.findById(id_medico).isPresent()){
+        if(medicoRepository.findById(id_medico).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else{
@@ -172,13 +170,13 @@ public class MedicoService {
     public ResponseEntity<Paziente> addFarmacoToPaziente(Long id_farmaco,Long id_paziente){
         Farmaco farmaco;
         Paziente paziente;
-        if(!farmacoRepository.findById(id_farmaco).isPresent()){
+        if(farmacoRepository.findById(id_farmaco).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
         }
         else {
             farmaco = farmacoRepository.findById(id_farmaco).get();
         }
-        if(!pazienteRepository.findById(id_paziente).isPresent()){
+        if(pazienteRepository.findById(id_paziente).isEmpty()){
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
         else {
@@ -194,7 +192,7 @@ public class MedicoService {
     // Stampa tutti i farmaci di un paziente
     public ResponseEntity<List<Farmaco>> getAllFarmaciOfPaziente(Long id_paziente){
         Paziente paziente;
-        if(!pazienteRepository.findById(id_paziente).isPresent()){
+        if(pazienteRepository.findById(id_paziente).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else{
@@ -207,14 +205,14 @@ public class MedicoService {
     public ResponseEntity<Farmaco> removeFarmacoOfPaziente(Long id_farmaco, Long id_paziente){
         Paziente paziente;
         Farmaco farmaco;
-        if(!pazienteRepository.findById(id_paziente).isPresent()){
+        if(pazienteRepository.findById(id_paziente).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else{
             paziente = pazienteRepository.findById(id_paziente).get();
         }
 
-        if(!farmacoRepository.findById(id_farmaco).isPresent()){
+        if(farmacoRepository.findById(id_farmaco).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else{
@@ -228,7 +226,7 @@ public class MedicoService {
 
     // Stampa tutte le prenotazioni di un medico
     public ResponseEntity<List<Terapia>> getAllPrenotazioniByMedico(Long id_medico){
-        if(!medicoRepository.findById(id_medico).isPresent()){
+        if(medicoRepository.findById(id_medico).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         if(medicoRepository.findById(id_medico).get().getTerapie().isEmpty()){
