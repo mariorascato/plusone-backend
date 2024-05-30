@@ -37,6 +37,7 @@ public class Paziente extends Persona {
 
     // Relazione con triage
     @OneToMany(mappedBy = "paziente", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Triage> triages;
 
 }

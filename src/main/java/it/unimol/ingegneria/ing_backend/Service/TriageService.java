@@ -1,5 +1,9 @@
 package it.unimol.ingegneria.ing_backend.Service;
 
+
+import it.unimol.ingegneria.ing_backend.Model.Conferma;
+import it.unimol.ingegneria.ing_backend.Model.Medico;
+import it.unimol.ingegneria.ing_backend.Model.Paziente;
 import it.unimol.ingegneria.ing_backend.Model.Triage;
 import it.unimol.ingegneria.ing_backend.Repository.TriageRepository;
 import it.unimol.ingegneria.ing_backend.Model.Paziente;
@@ -25,6 +29,8 @@ public class TriageService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         Paziente paziente = pazienteRepository.findById(id_paziente).get();
+        paziente.getTriages().add(triage);
+        pazienteRepository.save(paziente);
         triage.setPaziente(paziente);
         return ResponseEntity.status(HttpStatus.OK).body(triageRepository.save(triage));
     }
@@ -65,6 +71,14 @@ public class TriageService {
         }
         triageRepository.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+    public ResponseEntity<Triage> setState(Long id,Conferma conferma){
+        if(triageRepository.findById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        Triage triage = triageRepository.findById(id).get();
+        triage.setConferma(conferma);
+        return ResponseEntity.status(HttpStatus.OK).body(triageRepository.save(triage));
     }
 
     // Imposta stato

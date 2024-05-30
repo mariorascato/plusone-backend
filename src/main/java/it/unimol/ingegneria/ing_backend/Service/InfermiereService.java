@@ -1,6 +1,7 @@
 package it.unimol.ingegneria.ing_backend.Service;
 
 import it.unimol.ingegneria.ing_backend.Model.Infermiere;
+import it.unimol.ingegneria.ing_backend.Model.Persona;
 import it.unimol.ingegneria.ing_backend.Repository.InfermiereRepository;
 import it.unimol.ingegneria.ing_backend.Model.Persona;
 
@@ -81,6 +82,14 @@ public class InfermiereService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else return ResponseEntity.status(HttpStatus.OK).body(infermiereRepository.findAll());
+    }
+    public ResponseEntity<Persona> getInfermiereByEmail(String email){
+        if (!infermiereRepository.findPersonaByEmail(email).isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.OK).body(infermiereRepository.findPersonaByEmail(email).get());
+        }
     }
 
     // Stampa infermiere da email

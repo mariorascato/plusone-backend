@@ -1,6 +1,10 @@
 package it.unimol.ingegneria.ing_backend.Controller;
 
 import it.unimol.ingegneria.ing_backend.Model.*;
+import it.unimol.ingegneria.ing_backend.Model.Farmaco;
+import it.unimol.ingegneria.ing_backend.Model.Medico;
+import it.unimol.ingegneria.ing_backend.Model.Paziente;
+import it.unimol.ingegneria.ing_backend.Model.Tfarmacologica;
 import it.unimol.ingegneria.ing_backend.Service.TfarmacologicaService;
 
 import lombok.AllArgsConstructor;
@@ -61,6 +65,14 @@ public class TfarmacologicaController {
     @PutMapping("removeFarmacoOfTfarmacologica/{id_farmaco}/{id_tfarmacologica}")
     public ResponseEntity<Farmaco> removeFarmacoOfTfarmacologica(@PathVariable Long id_farmaco, @PathVariable Long id_tfarmacologica){
         return tfarmacologicaService.removeFarmacoOfTfarmacologica(id_farmaco, id_tfarmacologica);
+    }
+    @GetMapping("getMedicoByTfarmacologica/{id}")
+    public ResponseEntity<Medico> getMedicoByTfarmacologica(@PathVariable Long id){
+        return tfarmacologicaService.getMedicoByTFarmacologica(id);
+    }
+    @GetMapping("getPazienteByTfarmacologica/{id}")
+    public ResponseEntity<Paziente> getPazienteByTfarmacologica(@PathVariable Long id){
+        return tfarmacologicaService.getPazienteByTFarmacologica(id);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////

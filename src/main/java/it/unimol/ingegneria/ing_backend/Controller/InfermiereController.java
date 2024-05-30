@@ -4,6 +4,7 @@ import it.unimol.ingegneria.ing_backend.Model.Infermiere;
 import it.unimol.ingegneria.ing_backend.Model.Persona;
 import it.unimol.ingegneria.ing_backend.Service.InfermiereService;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,6 +46,10 @@ public class InfermiereController {
     @GetMapping("getAll")
     public ResponseEntity<List<Infermiere>> getAll(){
         return infermiereService.getAll();
+    }
+    @GetMapping("getInfermiereByEmail/{email}")
+    public ResponseEntity<Persona> getInfermiereByEmail(@PathVariable String email){
+        return infermiereService.getInfermiereByEmail(email);
     }
 
     // Stampa infermiere da email
