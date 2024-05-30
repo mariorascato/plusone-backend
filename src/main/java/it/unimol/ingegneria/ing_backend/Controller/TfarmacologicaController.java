@@ -24,8 +24,8 @@ public class TfarmacologicaController {
 
     // Aggiungi una terapia farmacologica
     @PostMapping("addTfarmacologica/{id_medico}/{id_paziente}")
-    public ResponseEntity<Tfarmacologica> addTfarmacologica(@RequestBody Tfarmacologica tfarmacologica,@PathVariable Long id_medico,@PathVariable Long id_paziente){
-        return tfarmacologicaService.addTfarmacologica(tfarmacologica,id_medico,id_paziente);
+    public ResponseEntity<Tfarmacologica> addTfarmacologica(@PathVariable Long id_medico,@PathVariable Long id_paziente){
+        return tfarmacologicaService.addTfarmacologica(id_medico,id_paziente);
     }
 
     // Aggiorna terapia farmacologica

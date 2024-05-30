@@ -46,7 +46,7 @@ public class QuantitaDettaglioService {
         quantitaDettaglio.setTfarmacologica(tfarmacologica);
 
         quantitaDettaglioRepository.save(quantitaDettaglio);
-        return ResponseEntity.status(HttpStatus.CREATED).body(quantitaDettaglio);
+        return ResponseEntity.status(HttpStatus.OK).body(quantitaDettaglio);
 
     }
 

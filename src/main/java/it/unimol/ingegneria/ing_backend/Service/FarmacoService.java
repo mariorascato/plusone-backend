@@ -27,6 +27,9 @@ public class FarmacoService {
             return ResponseEntity.status(HttpStatus.CREATED).body(farmaco);
         }
     }
+    public ResponseEntity<List<Farmaco>> addFarmaci(List<Farmaco> farmaci){
+        return ResponseEntity.status(HttpStatus.OK).body(farmacoRepository.saveAll(farmaci));
+    }
 
     // Aggiorna farmaco
     public ResponseEntity<Farmaco> updateFarmaco(Farmaco farmaco,Long id){

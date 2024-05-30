@@ -32,9 +32,10 @@ public class TfarmacologicaService {
 
 
     // Aggiungi terapia farmacologica
-    public ResponseEntity<Tfarmacologica> addTfarmacologica(Tfarmacologica tfarmacologica,Long id_medico,Long id_paziente){
+    public ResponseEntity<Tfarmacologica> addTfarmacologica(Long id_medico,Long id_paziente){
         Medico medico;
         Paziente paziente;
+        Tfarmacologica tfarmacologica = new Tfarmacologica();
 
         // Controllo esistenza medico
 

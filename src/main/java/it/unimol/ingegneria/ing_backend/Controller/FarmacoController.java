@@ -21,6 +21,10 @@ public class FarmacoController {
     public ResponseEntity<Farmaco> addFarmaco(@RequestBody Farmaco farmaco){
         return farmacoService.addFarmaco(farmaco);
     }
+    @PostMapping("addFarmaci")
+    public ResponseEntity<List<Farmaco>> addFarmaci(@RequestBody List<Farmaco> farmaci){
+        return farmacoService.addFarmaci(farmaci);
+    }
 
     // Aggiorna farmaco
     @PutMapping("updateFarmaco/{id}")
