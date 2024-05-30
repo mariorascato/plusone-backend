@@ -71,7 +71,7 @@ public class TfarmacologicaService {
             Tfarmacologica tfarmacologicaToUpdate = tfarmacologicaRepository.findById(id).get();
 
 
-            tfarmacologicaToUpdate.setEsame(tfarmacologica.getEsame());
+            tfarmacologicaToUpdate.setEsami(tfarmacologica.getEsami());
             tfarmacologicaToUpdate.setPaziente(tfarmacologica.getPaziente());
             tfarmacologicaToUpdate.setMedico(tfarmacologica.getMedico());
 
@@ -160,20 +160,6 @@ public class TfarmacologicaService {
         tfarmacologicaRepository.save(tfarmacologica);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
-    public ResponseEntity<Medico> getMedicoByTFarmacologica(Long id){
-        if(!tfarmacologicaRepository.findById(id).isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        else return ResponseEntity.status(HttpStatus.FOUND).body(tfarmacologicaRepository.findById(id).get().getMedico());
-    }
-    public ResponseEntity<Paziente> getPazienteByTFarmacologica(Long id){
-        if(!tfarmacologicaRepository.findById(id).isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        else return ResponseEntity.status(HttpStatus.FOUND).body(tfarmacologicaRepository.findById(id).get().getPaziente());
-    }
-
-
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     // RELAZIONE CON ESAME
@@ -243,7 +229,7 @@ public class TfarmacologicaService {
         if(tfarmacologicaRepository.findById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        else return ResponseEntity.status(HttpStatus.FOUND).body(tfarmacologicaRepository.findById(id).get().getMedico());
+        else return ResponseEntity.status(HttpStatus.OK).body(tfarmacologicaRepository.findById(id).get().getMedico());
     }
 
     // Stampa paziente da terapia farmacologica
@@ -251,9 +237,16 @@ public class TfarmacologicaService {
         if(tfarmacologicaRepository.findById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        else return ResponseEntity.status(HttpStatus.FOUND).body(tfarmacologicaRepository.findById(id).get().getPaziente());
+        else return ResponseEntity.status(HttpStatus.OK).body(tfarmacologicaRepository.findById(id).get().getPaziente());
+    }
+    public ResponseEntity<List<QuantitaDettaglio>> getAllQuantitaDettaglioByTFarmacologica(Long id){
+        if(tfarmacologicaRepository.findById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        else return ResponseEntity.status(HttpStatus.OK).body(tfarmacologicaRepository.findById(id).get().getQuantitaDettagli());
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 }

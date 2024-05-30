@@ -42,10 +42,7 @@ public class TriageController {
     public ResponseEntity<Triage> deleteTriage(@PathVariable Long id){
         return triageService.deleteTriage(id);
     }
-    @PutMapping("setState/{id}/{conferma}")
-    public ResponseEntity<Triage> setState(@PathVariable Long id, @PathVariable Conferma conferma){
-        return triageService.setState(id,conferma);
-    }
+
 
     // Imposta stato
     @PutMapping("setState/{id}/{conferma}")

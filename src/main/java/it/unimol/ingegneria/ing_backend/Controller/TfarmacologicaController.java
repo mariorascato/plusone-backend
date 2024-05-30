@@ -95,22 +95,10 @@ public class TfarmacologicaController {
     public ResponseEntity<Esame> removeEsameOfTfarmacologica(@PathVariable Long id_esame, @PathVariable Long id_tfarmacologica){
         return tfarmacologicaService.removeEsameOfTfarmacologica(id_esame, id_tfarmacologica);
     }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-    // RELAZIONE CON MEDICO E PAZIENTE
-
-    // Stampa medico da terapia farmacologica
-    @GetMapping("getMedicoByTfarmacologica/{id}")
-    public ResponseEntity<Medico> getMedicoByTfarmacologica(@PathVariable Long id){
-        return tfarmacologicaService.getMedicoByTFarmacologica(id);
+    @GetMapping("getAllQuantitaDettaglioByTFarmacologica/{id}")
+    public ResponseEntity<List<QuantitaDettaglio>> getAllQuantitaDettaglioByTFarmacologica(@PathVariable Long id){
+        return tfarmacologicaService.getAllQuantitaDettaglioByTFarmacologica(id);
     }
 
-    // Stampa paziente da terapia farmacologica
-    @GetMapping("getPazienteByTfarmacologica/{id}")
-    public ResponseEntity<Paziente> getPazienteByTfarmacologica(@PathVariable Long id){
-        return tfarmacologicaService.getPazienteByTFarmacologica(id);
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }

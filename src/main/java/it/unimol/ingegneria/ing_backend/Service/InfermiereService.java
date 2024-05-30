@@ -83,14 +83,6 @@ public class InfermiereService {
         }
         else return ResponseEntity.status(HttpStatus.OK).body(infermiereRepository.findAll());
     }
-    public ResponseEntity<Persona> getInfermiereByEmail(String email){
-        if (!infermiereRepository.findPersonaByEmail(email).isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        else {
-            return ResponseEntity.status(HttpStatus.OK).body(infermiereRepository.findPersonaByEmail(email).get());
-        }
-    }
 
     // Stampa infermiere da email
     public ResponseEntity<Persona> getInfermiereByEmail(String email){

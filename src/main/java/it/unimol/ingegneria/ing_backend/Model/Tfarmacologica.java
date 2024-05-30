@@ -22,13 +22,6 @@ public class Tfarmacologica {
     @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Farmaco> farmaci;
-    @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
-    @JsonIgnore
-    private Medico medico;
-
-    @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
-    @JsonIgnore
-    private Paziente paziente;
 
     // Relazione con medico
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
@@ -41,7 +34,7 @@ public class Tfarmacologica {
     private Paziente paziente;
 
     // Relazione con quantità dettaglio
-    @OneToMany(mappedBy = "tfarmacologica", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "tfarmacologica", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JsonIgnore
     private List <QuantitaDettaglio> quantitaDettagli;
 

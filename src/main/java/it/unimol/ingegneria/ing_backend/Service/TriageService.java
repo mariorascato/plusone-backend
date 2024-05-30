@@ -81,14 +81,5 @@ public class TriageService {
         return ResponseEntity.status(HttpStatus.OK).body(triageRepository.save(triage));
     }
 
-    // Imposta stato
-    public ResponseEntity<Triage> setState(Long id, Conferma conferma){
-        if(triageRepository.findById(id).isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        Triage triage = triageRepository.findById(id).get();
-        triage.setConferma(conferma);
-        return ResponseEntity.status(HttpStatus.OK).body(triageRepository.save(triage));
-    }
 
 }
