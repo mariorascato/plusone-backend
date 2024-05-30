@@ -29,6 +29,9 @@ public class EsameService {
             return ResponseEntity.status(HttpStatus.CREATED).body(esame);
         }
     }
+    public ResponseEntity<List<Esame>> addEsami(List<Esame> esami){
+        return ResponseEntity.status(HttpStatus.OK).body(esameRepository.saveAll(esami));
+    }
 
     // Aggiorna esame
     public ResponseEntity<Esame> updateEsame(Esame esame, Long id){

@@ -23,6 +23,10 @@ public class EsameController {
     public ResponseEntity<Esame> addEsame(@RequestBody Esame esame){
         return esameService.addEsame(esame);
     }
+    @PostMapping("addEsami")
+    public ResponseEntity<List<Esame>> addEsami(@RequestBody List<Esame> esami){
+        return esameService.addEsami(esami);
+    }
 
     // Aggiorna esame
     @PutMapping("updateEsame/{id}")

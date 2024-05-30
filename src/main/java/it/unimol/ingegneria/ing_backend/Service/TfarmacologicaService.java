@@ -58,7 +58,7 @@ public class TfarmacologicaService {
         tfarmacologica.setMedico(medico);
 
         tfarmacologicaRepository.save(tfarmacologica);
-        return ResponseEntity.status(HttpStatus.CREATED).body(tfarmacologica);
+        return ResponseEntity.status(HttpStatus.OK).body(tfarmacologica);
 
     }
 
