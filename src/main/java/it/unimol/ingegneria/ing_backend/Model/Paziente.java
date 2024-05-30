@@ -40,4 +40,5 @@ public class Paziente extends Persona {
     @JsonIgnore
     private List<Triage> triages;
 
+
 }
