@@ -42,11 +42,17 @@ public class InfermiereController {
         return infermiereService.deleteInfermiere(id);
     }
 
-    // Stampa tutti gli infermiere
+    // Stampa tutti gli infermieri
     @GetMapping("getAll")
     public ResponseEntity<List<Infermiere>> getAll(){
         return infermiereService.getAll();
     }
+    @GetMapping("getInfermiereByEmail/{email}")
+    public ResponseEntity<Persona> getInfermiereByEmail(@PathVariable String email){
+        return infermiereService.getInfermiereByEmail(email);
+    }
+
+    // Stampa infermiere da email
     @GetMapping("getInfermiereByEmail/{email}")
     public ResponseEntity<Persona> getInfermiereByEmail(@PathVariable String email){
         return infermiereService.getInfermiereByEmail(email);

@@ -28,9 +28,14 @@ public class Farmaco {
     @JsonIgnore
     private List<Paziente> pazienti;
 
-    // Relazione con Terapia farmacologica
+    // Relazione con terapia farmacologica
     @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Tfarmacologica> tfarmacologica;
+
+    // Relazione con quantità dettaglio
+    @OneToMany(mappedBy = "farmaco", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List <QuantitaDettaglio> quantitaDettagli;
 
 }

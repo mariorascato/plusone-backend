@@ -1,11 +1,15 @@
 package it.unimol.ingegneria.ing_backend.Service;
 
+
 import it.unimol.ingegneria.ing_backend.Model.Conferma;
 import it.unimol.ingegneria.ing_backend.Model.Medico;
 import it.unimol.ingegneria.ing_backend.Model.Paziente;
 import it.unimol.ingegneria.ing_backend.Model.Triage;
-import it.unimol.ingegneria.ing_backend.Repository.PazienteRepository;
 import it.unimol.ingegneria.ing_backend.Repository.TriageRepository;
+import it.unimol.ingegneria.ing_backend.Model.Paziente;
+import it.unimol.ingegneria.ing_backend.Repository.PazienteRepository;
+import it.unimol.ingegneria.ing_backend.Model.Conferma;
+
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -69,6 +73,16 @@ public class TriageService {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
     public ResponseEntity<Triage> setState(Long id,Conferma conferma){
+        if(triageRepository.findById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        Triage triage = triageRepository.findById(id).get();
+        triage.setConferma(conferma);
+        return ResponseEntity.status(HttpStatus.OK).body(triageRepository.save(triage));
+    }
+
+    // Imposta stato
+    public ResponseEntity<Triage> setState(Long id, Conferma conferma){
         if(triageRepository.findById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }

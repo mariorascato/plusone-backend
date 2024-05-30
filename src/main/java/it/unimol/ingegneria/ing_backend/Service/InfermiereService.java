@@ -3,6 +3,7 @@ package it.unimol.ingegneria.ing_backend.Service;
 import it.unimol.ingegneria.ing_backend.Model.Infermiere;
 import it.unimol.ingegneria.ing_backend.Model.Persona;
 import it.unimol.ingegneria.ing_backend.Repository.InfermiereRepository;
+import it.unimol.ingegneria.ing_backend.Model.Persona;
 
 import org.springframework.stereotype.Service;
 import lombok.Data;
@@ -42,7 +43,7 @@ public class InfermiereService {
 
     // Aggiorna infermiere
     public ResponseEntity<Infermiere> updateInfermiere(Infermiere infermiere,Long id){
-        if(!infermiereRepository.findById(id).isPresent()){
+        if(infermiereRepository.findById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else{
@@ -58,7 +59,6 @@ public class InfermiereService {
             infermiereToUpdate.setRuolo(infermiere.getRuolo());
 
             infermiereRepository.save(infermiereToUpdate);
-
             return ResponseEntity.status(HttpStatus.OK).body(infermiereToUpdate);
         }
     }
@@ -66,7 +66,7 @@ public class InfermiereService {
     // Elimina infermiere
     public ResponseEntity<Infermiere> deleteInfermiere(Long id){
 
-        if(!infermiereRepository.findById(id).isPresent()){
+        if(infermiereRepository.findById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
@@ -85,6 +85,16 @@ public class InfermiereService {
     }
     public ResponseEntity<Persona> getInfermiereByEmail(String email){
         if (!infermiereRepository.findPersonaByEmail(email).isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.OK).body(infermiereRepository.findPersonaByEmail(email).get());
+        }
+    }
+
+    // Stampa infermiere da email
+    public ResponseEntity<Persona> getInfermiereByEmail(String email){
+        if (infermiereRepository.findPersonaByEmail(email).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else {

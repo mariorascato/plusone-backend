@@ -1,9 +1,6 @@
 version: '3.8'
 services:
-
-
-
- mariadb: 
+ mariadb:
     image: mariadb
     container_name: my-mariadb-container
     environment:
@@ -13,11 +10,3 @@ services:
       MARIADB_PASSWORD: password
     ports:
       - "3306:3306"
-
-
-
-
-
-
-
-   

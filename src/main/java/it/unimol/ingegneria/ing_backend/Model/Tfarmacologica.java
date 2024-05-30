@@ -2,8 +2,6 @@ package it.unimol.ingegneria.ing_backend.Model;
 
 import lombok.Data;
 import jakarta.persistence.*;
-import it.unimol.ingegneria.ing_backend.Model.Esame;
-import it.unimol.ingegneria.ing_backend.Model.Farmaco;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -15,7 +13,10 @@ public class Tfarmacologica {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Esame esame;
+    // Relazione con esame
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Esame> esami;
 
     // Relazione con farmaco
     @ManyToMany(fetch = FetchType.LAZY)
@@ -28,5 +29,20 @@ public class Tfarmacologica {
     @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     @JsonIgnore
     private Paziente paziente;
+
+    // Relazione con medico
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Medico medico;
+
+    // Relazione con paziente
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Paziente paziente;
+
+    // Relazione con quantità dettaglio
+    @OneToMany(mappedBy = "tfarmacologica", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List <QuantitaDettaglio> quantitaDettagli;
 
 }

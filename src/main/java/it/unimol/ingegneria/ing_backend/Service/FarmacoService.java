@@ -30,7 +30,7 @@ public class FarmacoService {
 
     // Aggiorna farmaco
     public ResponseEntity<Farmaco> updateFarmaco(Farmaco farmaco,Long id){
-        if(!farmacoRepository.findById(id).isPresent()){
+        if(farmacoRepository.findById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else{
@@ -51,7 +51,7 @@ public class FarmacoService {
     // Elimina farmaco
     public ResponseEntity<Farmaco> deleteFarmaco(Long id){
 
-        if(!farmacoRepository.findById(id).isPresent()){
+        if(farmacoRepository.findById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 

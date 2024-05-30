@@ -1,10 +1,8 @@
 package it.unimol.ingegneria.ing_backend.Service;
 
-import it.unimol.ingegneria.ing_backend.Model.Persona;
-
 import it.unimol.ingegneria.ing_backend.Model.Paziente;
 import it.unimol.ingegneria.ing_backend.Repository.PazienteRepository;
-
+import it.unimol.ingegneria.ing_backend.Model.Persona;
 import it.unimol.ingegneria.ing_backend.Model.Medico;
 
 import org.springframework.stereotype.Service;
@@ -25,7 +23,6 @@ public class PazienteService {
     // Aggiungi un paziente
     public ResponseEntity<Paziente> addPaziente(Paziente paziente){
         if(pazienteRepository.findPersonaByCF(paziente.getCF()).isPresent()){
-
             return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
         }
         else{
@@ -45,7 +42,7 @@ public class PazienteService {
     // Aggiorna paziente
     public ResponseEntity<Paziente> updatePaziente(Paziente paziente,Long id){
 
-       if(!pazienteRepository.findById(id).isPresent()){
+       if(pazienteRepository.findById(id).isEmpty()){
            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
        }
        else{
@@ -68,19 +65,18 @@ public class PazienteService {
     }
 
     // Stampa tutti i pazienti
-    public ResponseEntity<List<Paziente>> getAll(){
-        if(!pazienteRepository.findAll().isEmpty()){
-            return ResponseEntity.status(HttpStatus.OK).body(pazienteRepository.findAll());
-        }
-        else {
+    public ResponseEntity<List<Paziente>>getAll(){
+        if(pazienteRepository.findAll().isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-
+        else {
+            return ResponseEntity.status(HttpStatus.OK).body(pazienteRepository.findAll());
+        }
     }
 
     // Stampa paziente da cf
     public ResponseEntity<Persona> findPazienteByCF(String cf){
-        if(!pazienteRepository.findPersonaByCF(cf).isPresent()){
+        if(pazienteRepository.findPersonaByCF(cf).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else{
@@ -100,7 +96,7 @@ public class PazienteService {
 
     // Stampa paziente da email
     public ResponseEntity<Persona> findPazienteByEmail(String email){
-        if (!pazienteRepository.findPersonaByEmail(email).isPresent()){
+        if (pazienteRepository.findPersonaByEmail(email).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else {
@@ -139,7 +135,7 @@ public class PazienteService {
     // Stampa il medico del paziente
     public ResponseEntity<Medico> getMedicoOfPaziente(Long id_paziente){
         Medico medico;
-        if(!pazienteRepository.findById(id_paziente).isPresent()){
+        if(pazienteRepository.findById(id_paziente).isEmpty()){
            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else {
