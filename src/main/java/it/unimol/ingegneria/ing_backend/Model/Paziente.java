@@ -3,10 +3,15 @@ package it.unimol.ingegneria.ing_backend.Model;
 import lombok.Data;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
 @Data
 @Entity
+@Getter
+@Setter
 public class Paziente extends Persona {
 
     private Indirizzo indirizzo;
@@ -14,6 +19,8 @@ public class Paziente extends Persona {
     private Boolean esenzione;
 
     private Boolean donatoreOrgani;
+
+    private Boolean attivo;
 
     // Relazione con medico
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
