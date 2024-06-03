@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -74,6 +75,26 @@ public class PazienteService {
         }
     }
 
+    // Stampa pazienti attivi
+    public ResponseEntity<List<Paziente>> getAllAttivi() {
+        if(pazienteRepository.findAllByAttivoTrue().isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.OK).body(pazienteRepository.findAllByAttivoTrue().get());
+        }
+    }
+
+    // Stampa pazienti non attivi
+    public ResponseEntity<List<Paziente>> getAllInattivi() {
+        if(pazienteRepository.findAllByAttivoFalse().isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.OK).body(pazienteRepository.findAllByAttivoFalse().get());
+        }
+    }
+
     // Stampa paziente da cf
     public ResponseEntity<Persona> findPazienteByCF(String cf){
         if(pazienteRepository.findPersonaByCF(cf).isEmpty()){
@@ -119,6 +140,20 @@ public class PazienteService {
             return ResponseEntity.status(HttpStatus.OK).body(pazienti);
         }
 
+    }
+
+    // Attiva il paziente verificando la sua registrazione
+    public ResponseEntity<Persona> activatePaziente(Long id) {
+        Optional<Paziente> paziente = pazienteRepository.findById(id);
+
+        if(paziente.isPresent()) {
+            paziente.get().setAttivo(true);
+            pazienteRepository.save(paziente.get());
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     // Elimina paziente

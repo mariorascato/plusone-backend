@@ -42,6 +42,18 @@ public class PazienteController {
         return pazienteService.getAll();
     }
 
+    // Stampa pazienti attivi
+    @GetMapping("getAllPazientiAttivi")
+    public ResponseEntity<List<Paziente>> getAllAttivi() {
+        return pazienteService.getAllAttivi();
+    }
+
+    // Stampa pazienti non attivi
+    @GetMapping("getAllPazientiInattivi")
+    public ResponseEntity<List<Paziente>> getAllInattivi() {
+        return pazienteService.getAllInattivi();
+    }
+
     // Stampa paziente da cf
     @GetMapping("getPazienteBycf/{cf}")
     public ResponseEntity<Persona> findPazienteBycf(@PathVariable String cf){
@@ -64,6 +76,12 @@ public class PazienteController {
     @GetMapping("findPazientiByCitta/{citta}")
     public ResponseEntity<List<Paziente>> findPazientiByCitta(@PathVariable String citta){
         return pazienteService.findPazientiByCitta(citta);
+    }
+
+    // Attiva paziente
+    @PutMapping("activatePaziente/{id}")
+    public ResponseEntity<Persona> activatePaziente(@PathVariable Long id){
+        return pazienteService.activatePaziente(id);
     }
 
     // Elimina paziente
