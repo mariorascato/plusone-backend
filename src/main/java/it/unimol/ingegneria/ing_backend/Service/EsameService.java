@@ -26,7 +26,7 @@ public class EsameService {
         }
         else{
             esameRepository.save(esame);
-            return ResponseEntity.status(HttpStatus.CREATED).body(esame);
+            return ResponseEntity.status(HttpStatus.OK).body(esame);
         }
     }
     public ResponseEntity<List<Esame>> addEsami(List<Esame> esami){

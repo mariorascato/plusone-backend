@@ -63,7 +63,7 @@ public class TerapiaService {
         if(terapiaRepository.findById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        else return ResponseEntity.status(HttpStatus.FOUND).body(terapiaRepository.findById(id).get().getMedicoCurante());
+        else return ResponseEntity.status(HttpStatus.OK).body(terapiaRepository.findById(id).get().getMedicoCurante());
     }
 
     // Stampa il paziente della terapia
@@ -71,7 +71,7 @@ public class TerapiaService {
         if(terapiaRepository.findById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        else return ResponseEntity.status(HttpStatus.FOUND).body(terapiaRepository.findById(id).get().getPaziente());
+        else return ResponseEntity.status(HttpStatus.OK).body(terapiaRepository.findById(id).get().getPaziente());
     }
 
     // Stampa le terapie di una tipologia
@@ -80,7 +80,7 @@ public class TerapiaService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else {
-            return ResponseEntity.status(HttpStatus.FOUND).body(terapiaRepository.findTerapiaByTipologiaTerapia(tipologiaTerapia).get());
+            return ResponseEntity.status(HttpStatus.OK).body(terapiaRepository.findTerapiaByTipologiaTerapia(tipologiaTerapia).get());
         }
     }
 

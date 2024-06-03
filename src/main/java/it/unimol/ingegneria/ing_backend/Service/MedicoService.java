@@ -99,7 +99,7 @@ public class MedicoService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else{
-            return ResponseEntity.status(HttpStatus.FOUND).body(medicoRepository.findPersonaByCF(cf).get());
+            return ResponseEntity.status(HttpStatus.OK).body(medicoRepository.findPersonaByCF(cf).get());
         }
     }
 
@@ -109,7 +109,7 @@ public class MedicoService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else {
-            return ResponseEntity.status(HttpStatus.FOUND).body(medicoRepository.findPersonaByNomeAndCognome(nome,cognome).get());
+            return ResponseEntity.status(HttpStatus.OK).body(medicoRepository.findPersonaByNomeAndCognome(nome,cognome).get());
         }
     }
 
@@ -162,7 +162,7 @@ public class MedicoService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else {
-            return ResponseEntity.status(HttpStatus.FOUND).body(medicoRepository.findMedicoByTipologiaMedico(tipologiaMedico).get());
+            return ResponseEntity.status(HttpStatus.OK).body(medicoRepository.findMedicoByTipologiaMedico(tipologiaMedico).get());
         }
     }
 

@@ -27,7 +27,7 @@ public class PazienteService {
         }
         else{
             pazienteRepository.save(paziente);
-            return ResponseEntity.status(HttpStatus.CREATED).body(paziente);
+            return ResponseEntity.status(HttpStatus.OK).body(paziente);
         }
     }
 
@@ -80,7 +80,7 @@ public class PazienteService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else{
-            return ResponseEntity.status(HttpStatus.FOUND).body(pazienteRepository.findPersonaByCF(cf).get());
+            return ResponseEntity.status(HttpStatus.OK).body(pazienteRepository.findPersonaByCF(cf).get());
         }
     }
 
@@ -90,7 +90,7 @@ public class PazienteService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else {
-            return ResponseEntity.status(HttpStatus.FOUND).body(pazienteRepository.findPersonaByNomeAndCognome(nome,cognome).get());
+            return ResponseEntity.status(HttpStatus.OK).body(pazienteRepository.findPersonaByNomeAndCognome(nome,cognome).get());
         }
     }
 
@@ -116,7 +116,7 @@ public class PazienteService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else {
-            return ResponseEntity.status(HttpStatus.FOUND).body(pazienti);
+            return ResponseEntity.status(HttpStatus.OK).body(pazienti);
         }
 
     }
@@ -145,7 +145,7 @@ public class PazienteService {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 
             }
-            else return ResponseEntity.status(HttpStatus.FOUND).body(medico);
+            else return ResponseEntity.status(HttpStatus.OK).body(medico);
         }
     }
 

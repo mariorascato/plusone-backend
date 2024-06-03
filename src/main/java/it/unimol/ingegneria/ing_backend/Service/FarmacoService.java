@@ -78,7 +78,7 @@ public class FarmacoService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else{
-            return ResponseEntity.status(HttpStatus.FOUND).body(farmacoRepository.findFarmacoByCodice(codice).get());
+            return ResponseEntity.status(HttpStatus.OK).body(farmacoRepository.findFarmacoByCodice(codice).get());
         }
     }
 
@@ -98,7 +98,7 @@ public class FarmacoService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else{
-            return ResponseEntity.status(HttpStatus.FOUND).body(farmacoRepository.findFarmacoByCategoria(categoria).get());
+            return ResponseEntity.status(HttpStatus.OK).body(farmacoRepository.findFarmacoByCategoria(categoria).get());
         }
     }
 
@@ -108,7 +108,7 @@ public class FarmacoService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else{
-            return ResponseEntity.status(HttpStatus.FOUND).body(farmacoRepository.findFarmacoByPrincipioAttivo(principioAttivo).get());
+            return ResponseEntity.status(HttpStatus.OK).body(farmacoRepository.findFarmacoByPrincipioAttivo(principioAttivo).get());
         }
     }
 
@@ -118,7 +118,7 @@ public class FarmacoService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else{
-            return ResponseEntity.status(HttpStatus.FOUND).body(farmacoRepository.findFarmacoByAzienda(azienda).get());
+            return ResponseEntity.status(HttpStatus.OK).body(farmacoRepository.findFarmacoByAzienda(azienda).get());
         }
     }
     

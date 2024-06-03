@@ -28,7 +28,7 @@ public class InfermiereService {
         }
         else{
             infermiereRepository.save(infermiere);
-            return ResponseEntity.status(HttpStatus.CREATED).body(infermiere);
+            return ResponseEntity.status(HttpStatus.OK).body(infermiere);
         }
     }
 
