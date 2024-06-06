@@ -1,5 +1,7 @@
 package it.unimol.ingegneria.ing_backend.Model;
 
+import lombok.Data;
+
 public class Admin extends Persona{
     private Admin() {
 
