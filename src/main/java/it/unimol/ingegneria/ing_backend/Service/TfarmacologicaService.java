@@ -36,6 +36,7 @@ public class TfarmacologicaService {
         Medico medico;
         Paziente paziente;
         Tfarmacologica tfarmacologica = new Tfarmacologica();
+        tfarmacologica.setAttivo(false);
 
         // Controllo esistenza medico
 
@@ -245,6 +246,15 @@ public class TfarmacologicaService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else return ResponseEntity.status(HttpStatus.OK).body(tfarmacologicaRepository.findById(id).get().getQuantitaDettagli());
+    }
+    public ResponseEntity<Tfarmacologica> setState(Long id,Boolean attivo){
+        if (tfarmacologicaRepository.findById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        Tfarmacologica tfarmacologica = tfarmacologicaRepository.findById(id).get();
+        tfarmacologica.setAttivo(attivo);
+
+        return ResponseEntity.status(HttpStatus.OK).body(tfarmacologicaRepository.save(tfarmacologica));
     }
 
 

@@ -99,6 +99,10 @@ public class TfarmacologicaController {
     public ResponseEntity<List<QuantitaDettaglio>> getAllQuantitaDettaglioByTFarmacologica(@PathVariable Long id){
         return tfarmacologicaService.getAllQuantitaDettaglioByTFarmacologica(id);
     }
+    @PutMapping("setState/{id}/{attivo}")
+    public ResponseEntity<Tfarmacologica> setState(@PathVariable Long id,@PathVariable Boolean attivo){
+        return tfarmacologicaService.setState(id,attivo);
+    }
 
 
 }

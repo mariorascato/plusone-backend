@@ -37,5 +37,6 @@ public class Tfarmacologica {
     @OneToMany(mappedBy = "tfarmacologica", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JsonIgnore
     private List <QuantitaDettaglio> quantitaDettagli;
+    private boolean attivo;
 
 }
