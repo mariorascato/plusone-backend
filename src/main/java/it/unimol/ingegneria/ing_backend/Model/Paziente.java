@@ -20,6 +20,8 @@ public class Paziente extends Persona {
 
     private Boolean donatoreOrgani;
 
+    private Diagnosi diagnosi;
+
     private Boolean attivo;
 
     // Relazione con medico
