@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public  abstract class Persona {
+public abstract class Persona {
 
         @Id //jakarta.persistence id non spring
         @GeneratedValue(strategy = GenerationType.IDENTITY)
