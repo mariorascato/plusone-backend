@@ -1,5 +1,6 @@
 package it.unimol.ingegneria.ing_backend.Controller;
 
+import it.unimol.ingegneria.ing_backend.Model.HashedPassword;
 import it.unimol.ingegneria.ing_backend.Model.Persona;
 import it.unimol.ingegneria.ing_backend.Service.PersonaService;
 import lombok.AllArgsConstructor;
@@ -14,8 +15,8 @@ public class PersonaController {
 
     private final PersonaService personaService;
 
-    @PutMapping("updatePersonaPassword/{id}/{password}")
-    public ResponseEntity<Persona> updatePersona(@PathVariable Long id, @PathVariable String password){
+    @PutMapping("updatePersonaPassword/{id}")
+    public ResponseEntity<Persona> updatePersona(@PathVariable Long id, @RequestBody HashedPassword password){
         return this.personaService.updatePassword(id,password);
     }
 
