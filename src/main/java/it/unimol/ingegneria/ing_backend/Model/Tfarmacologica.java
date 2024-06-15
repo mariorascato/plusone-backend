@@ -25,7 +25,6 @@ public class Tfarmacologica {
 
     // Relazione con medico
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JsonIgnore
     private Medico medico;
 
     // Relazione con paziente

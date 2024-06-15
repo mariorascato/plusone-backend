@@ -83,5 +83,25 @@ public class TerapiaService {
             return ResponseEntity.status(HttpStatus.OK).body(terapiaRepository.findTerapiaByTipologiaTerapia(tipologiaTerapia).get());
         }
     }
+    public ResponseEntity<Terapia> setState(Long id,boolean state){
+        if(terapiaRepository.findById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        Terapia terapia = terapiaRepository.findById(id).get();
+        terapia.setAttivo(state);
+
+        terapiaRepository.save(terapia);
+        return ResponseEntity.status(HttpStatus.OK).body(terapia);
+    }
+    public ResponseEntity<Terapia> deleteTerapia(Long id){
+        if(terapiaRepository.findById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        Terapia terapia =  terapiaRepository.findById(id).get();
+        terapiaRepository.deleteById(id);
+
+        return ResponseEntity.status(HttpStatus.OK).body(terapia);
+    }
+
 
 }

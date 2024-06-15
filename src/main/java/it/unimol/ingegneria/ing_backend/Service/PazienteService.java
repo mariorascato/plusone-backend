@@ -1,9 +1,7 @@
 package it.unimol.ingegneria.ing_backend.Service;
 
-import it.unimol.ingegneria.ing_backend.Model.Paziente;
+import it.unimol.ingegneria.ing_backend.Model.*;
 import it.unimol.ingegneria.ing_backend.Repository.PazienteRepository;
-import it.unimol.ingegneria.ing_backend.Model.Persona;
-import it.unimol.ingegneria.ing_backend.Model.Medico;
 
 import org.springframework.stereotype.Service;
 import lombok.Data;
@@ -182,6 +180,18 @@ public class PazienteService {
             }
             else return ResponseEntity.status(HttpStatus.OK).body(medico);
         }
+    }
+    public ResponseEntity<List<Terapia>> getAllTerapieByPaziente(Long id){
+        if(pazienteRepository.findById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(pazienteRepository.findById(id).get().getTerapie());
+    }
+    public ResponseEntity<List<Tfarmacologica>> getAllTerapieFarmacologicaByPaziente(Long id){
+        if(pazienteRepository.findById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(pazienteRepository.findById(id).get().getTerapieFarmacologiche());
     }
 
 }

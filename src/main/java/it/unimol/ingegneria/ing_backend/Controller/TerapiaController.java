@@ -51,5 +51,14 @@ public class TerapiaController {
     public ResponseEntity<List<Terapia>> getTerapieByTipologiaTerapia(@PathVariable TipologiaTerapia tipologia){
         return terapiaService.getTerapieByTipologia(tipologia);
     }
+    @PutMapping("setState/{id}/{state}")
+    public ResponseEntity<Terapia> setState(@PathVariable Long id,@PathVariable boolean state){
+        return terapiaService.setState(id,state);
+    }
+    @DeleteMapping("deleteTerapia/{id}")
+    public ResponseEntity<Terapia> deleteTerapia(@PathVariable Long id){
+        return terapiaService.deleteTerapia(id);
+    }
+
 
 }
