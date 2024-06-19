@@ -1,7 +1,7 @@
 FROM ubuntu:latest as build
 RUN apt-get update
 RUN apt-get install openjdk-21-jdk -y
-COPY ..
+COPY . .
 RUN ./mvnw bootJar --no-daemon
 
 FROM openjdk:21-jdk-slim
