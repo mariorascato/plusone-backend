@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/terapie")
-@CrossOrigin(origins = {"http://localhost:8100", "https://3.75.158.163:5432"})
+@CrossOrigin(origins = "*")
 public class TerapiaController {
 
     private final TerapiaService terapiaService;
