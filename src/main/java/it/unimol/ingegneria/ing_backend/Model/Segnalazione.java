@@ -13,4 +13,5 @@ public class Segnalazione {
     private String descrizione;
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     private Persona utente;
+    private Boolean attivo;
 }

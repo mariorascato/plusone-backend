@@ -22,4 +22,8 @@ public class SegnalazioneController {
     public ResponseEntity<List<Segnalazione>> getAll(){
         return segnalazioneService.getAll();
     }
+    @PutMapping("setState/{id}/{state}")
+    public ResponseEntity<Segnalazione> setState(@PathVariable Long id,@PathVariable boolean state){
+        return segnalazioneService.setState(id,state);
+    }
 }
