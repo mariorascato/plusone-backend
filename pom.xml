@@ -10,7 +10,7 @@
     </parent>
     <groupId>it.unimol.ingegneria</groupId>
     <artifactId>ing_backend</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1</version>
     <name>ing_backend</name>
     <description>ing_backend</description>
     <properties>
