@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/persona")
-@CrossOrigin("http://localhost:8100")
+@CrossOrigin(origins = {"http://localhost:8100", "https://3.75.158.163:5432"})
 public class PersonaController {
 
     private final PersonaService personaService;

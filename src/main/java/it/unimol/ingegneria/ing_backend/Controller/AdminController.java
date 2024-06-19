@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/admin")
-@CrossOrigin("http://localhost:8100")
+@CrossOrigin(origins = {"http://localhost:8100", "https://3.75.158.163:5432"})
 public class AdminController {
     @GetMapping("getAdmin")
     public ResponseEntity<Admin> getAdmin(){

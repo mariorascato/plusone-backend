@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/segnalazioni")
-@CrossOrigin("http://localhost:8100")
+@CrossOrigin(origins = {"http://localhost:8100", "https://3.75.158.163:5432"})
 public class SegnalazioneController {
     private final SegnalazioneService segnalazioneService;
     @PostMapping("addSegnalazione/{id}")
