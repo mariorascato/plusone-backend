@@ -34,6 +34,16 @@ public class SegnalazioneService {
     public ResponseEntity<List<Segnalazione>> getAll(){
         return ResponseEntity.status(HttpStatus.OK).body(segnalazioneRepository.findAll());
     }
+    public ResponseEntity<Segnalazione> setState(Long id,boolean state){
+        if(segnalazioneRepository.findById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        Segnalazione segnalazione = segnalazioneRepository.findById(id).get();
+        segnalazione.setAttivo(state);
+
+        return ResponseEntity.status(HttpStatus.OK).body(segnalazioneRepository.save(segnalazione));
+
+    }
 
 
 }
